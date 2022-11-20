@@ -1,20 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { setSort } from "../redux/slices/FilterSlice";
 
-function Sort({ }) {
-	const [selectedSort, setSelectedSort] = useState('');
-	const options = [
-		{ value: 'алфавиту', sortProperty: 'title' },
-		{ value: 'цене', sortProperty: 'price' },
-	]
+
+function Sort() {
+	const dispatch = useDispatch();
+	const { sort } = useSelector(state => state.FilterSlice);
+	const list = [
+		{ name: 'цене', sortProperty: 'price' },
+		{ name: 'алфавиту', sortProperty: 'title' }
+	];
+
 	return (
-		<select >
-			<option value="">Тип сортировки</option>
-			{options.map((obj) => <option onClick={() => console.log(obj.sortProperty)} value={obj.sortProperty}>{obj.value}</option>)
-			}
-		</select >
-
-	);
+		<div>
+			<select value={sort} onChange={(e) => dispatch(setSort(e.target.value))}>
+				<option>Default</option>
+				{list.map((obj) => {
+					return <option value={obj.sortProperty} > {obj.name}</option>
+				})}
+			</select>
+		</div >
+	)
 }
 
 export default Sort;

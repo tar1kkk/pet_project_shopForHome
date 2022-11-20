@@ -1,22 +1,36 @@
-
 import React from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Items from './components/Items';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  const items = [
-    { id: 1, title: 'Стул серый', img: 'chair-grey.jpeg', desc: 'Lorem 10 lor', category: 'chairs', price: '49.99' },
-    { id: 2, title: 'Стол', img: 'table.jpg', desc: 'Lorem 101 lor5', category: 'tables', price: '149.99' },
-    { id: 3, title: 'Диван', img: 'sofa.jpg', desc: 'Lorem 10 lor1025', category: 'sofa', price: '549.99' },
-    { id: 4, title: 'Лампа', img: 'light.jpg', desc: 'Lorem 10 lor1212', category: 'light', price: '25.00' },
-    { id: 5, title: 'Стул белый', img: 'chair-white.jpg', desc: 'Lorem 10 lor12312313', category: 'chairs', price: '49.99' },
-  ]
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  // const [sortBy, setSortBy] = useState("");
+  const dispatch = useDispatch();
+  const { categoryId, sort } = useSelector(state => state.FilterSlice);
+
+  async function fetchData() {
+    setLoading(true);
+    const response = await fetch(`https://636fc0d4bb9cf402c81ee749.mockapi.io/items?category=${categoryId === 0 ? '' : categoryId}&sortBy=${sort}`);
+    const data = await response.json();
+    setItems(data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [categoryId, sort])
+
+
   return (
     <div className="wrapper" >
       <Header />
-      <Items items={items} />
+      <Items items={items} loading={loading} />
       <Footer />
     </div>
   );

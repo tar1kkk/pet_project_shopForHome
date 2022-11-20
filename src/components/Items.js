@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import Item from './Item'
-import Sort from './Sort';
+import Item from './Item';
+import MyLoader from './MyLoader';
 
 
-function Items({ items }) {
+function Items({ items, loading, sortBy }) {
 	return (
 		<>
-			<Sort items={items} />
 			<main>
-				{items.map((item) => {
-					return <Item item={item} key={item.id} />
+				{loading ? [...new Array(6)].map((_, id) => {
+					return <MyLoader key={id} />
+				}) : items.map((item) => {
+					return <Item  {...item} />
 				})}
 			</main>
 		</>

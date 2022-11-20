@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
 
-function Item({ item }) {
+function Item({ title, desc, price, img }) {
 	return (
-			<div className='item'>
-				<img src={'./img/' + item.img} />
-				<h2>{item.title}</h2>
-				<p>{item.desc}</p>
-				<b>{item.price}$</b>
-				<div className='add-to-cart'>+</div>
-			</div>
+		<div className='item'>
+			<img src={'./img/' + img} />
+			<h2>{title}</h2>
+			<p>{desc}</p>
+			<b>{price}$</b>
+			<div className='add-to-cart'>+</div>
+		</div>
 	);
 }
 
