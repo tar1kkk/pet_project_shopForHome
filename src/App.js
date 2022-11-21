@@ -5,13 +5,11 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Items from './components/Items';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function App() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [sortBy, setSortBy] = useState("");
-  const dispatch = useDispatch();
   const { categoryId, sort } = useSelector(state => state.FilterSlice);
 
   async function fetchData() {
