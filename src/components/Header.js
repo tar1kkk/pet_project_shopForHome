@@ -3,11 +3,12 @@ import { FaShoppingBasket } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import Categories from './Categories';
 import Sort from './Sort';
+import AddToCart from './AddToCart';
 
 function Header() {
 	const [cartOpen, setCartOpen] = useState(false);
 	const { items, totalPrice } = useSelector(state => state.CartSlice);
-	console.log(items)
+
 	return (
 		<header>
 			<div>
@@ -19,9 +20,9 @@ function Header() {
 				</ul>
 				<FaShoppingBasket onClick={() => setCartOpen(!cartOpen)} className={`shop-cart-button ${cartOpen && 'active'}`} />
 				{cartOpen && (
-					<div className='shop-cart'>
+					<div>
 						{items.map((obj) => {
-							return <div>{obj.price},{obj.count}</div>
+							return <AddToCart {...obj} />
 						})}
 					</div>
 				)}

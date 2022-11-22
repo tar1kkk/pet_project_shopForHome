@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import * as mdb from 'mdb-react-ui-kit'
 
-function AddToCart({ item }) {
-	console.log(item)
+function AddToCart({ price, count, img, title, desc }) {
 	return (
 		<div>
 
