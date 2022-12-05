@@ -1,0 +1,24 @@
+.root :global li {
+	display: inline-flex;
+ }
+ .root :global li.selected a {
+	background: black;
+	color: #fff;
+ }
+ .root :global a {
+	text-align: center;
+	line-height: 42px;
+	width: 45px;
+	height: 45px;
+	border: 1px solid black;
+	border-radius: 30px;
+	margin-right: 10px;
+	cursor: pointer;
+	display: inline-block;
+	color: black;
+ }
+ .root :global a:hover {
+	background: black;
+	color: #fff;
+ }
+ 

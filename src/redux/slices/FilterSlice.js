@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	categoryId: 0,
 	currentPage: 1,
+	valueSearch: '',
 	sort: {
 		name: 'Default',
 	},
@@ -22,9 +23,15 @@ const FlterSlice = createSlice({
 		setCurrentPage(state, action) {
 			state.currentPage = action.payload;
 		},
+		changePages(state, action) {
+			state.currentPage = action.payload;
+		},
+		changeSearch(state, action) {
+			state.valueSearch = action.payload;
+		}
 	}
 });
 
-export const { setCategoryId, setSort, setCurrentPage } = FlterSlice.actions;
+export const { setCategoryId, setSort, setCurrentPage, changePages, changeSearch } = FlterSlice.actions;
 
 export default FlterSlice.reducer;
