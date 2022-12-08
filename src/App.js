@@ -7,6 +7,8 @@ import Items from './components/Items';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from './components/Pagination';
+import { Route, Routes } from 'react-router-dom';
+import FullItems from './components/FullItems';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -30,8 +32,12 @@ function App() {
   return (
     <div className="wrapper" >
       <Header />
-      <Items items={items} loading={loading} />
-      <Pagination   />
+      <Routes>
+        <Route path="/" element={<Items items={items} loading={loading} />} />
+        <Route path="/items/:id" element={<FullItems />} />
+        <Route path="*" element={<h1>NOT FOUND</h1>} />
+      </Routes>
+      <Pagination />
       <Footer />
     </div>
   );
